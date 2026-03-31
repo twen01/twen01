@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thomas Wen | Computer Engineering @ GT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C8963E;
+      --gold-light: #E8B86D;
+      --navy: #0D1B2A;
+      --navy-mid: #162436;
+      --navy-light: #1E3044;
+      --cream: #F5EFE6;
+      --cream-dark: #EDE4D6;
+      --text: #F0E8DB;
+      --text-muted: #A89880;
+      --accent: #4ECDC4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13, 27, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,150,62,0.2);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(200,150,62,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(78,205,196,0.05) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--gold) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 750px; }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 1.0;
+      color: var(--cream);
+      margin-bottom: 0.2em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin: 1.5rem 0 2.5rem;
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200,150,62,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(240,232,219,0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200,150,62,0.2);
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--cream);
+      margin-bottom: 2.5rem;
+      line-height: 1.15;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    #about { padding-top: 8rem; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,150,62,0.15);
+      border-radius: 6px;
+      padding: 1.5rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(200,150,62,0.5);
+      transform: translateY(-3px);
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .skill-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      border: 1px solid rgba(200,150,62,0.25);
+      color: var(--text-muted);
+      background: rgba(200,150,62,0.04);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(200,150,62,0.08);
+    }
+
+    /* ─── EXPERIENCE / PROJECTS ───────────────────────── */
+    .timeline { position: relative; padding-left: 2rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0.5rem; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+      position: absolute; left: -2.35rem; top: 0.4rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(200,150,62,0.2);
+    }
+
+    .timeline-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-body {
+      list-style: none;
+    }
+
+    .timeline-body li {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-left: 1rem;
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+
+    .timeline-body li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--gold);
+    }
+
+    /* ─── CAREER GOALS ────────────────────────────────── */
+    #goals { background: var(--navy-mid); margin: 0; max-width: 100%; padding: 6rem 4rem; }
+
+    #goals > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+    #goals h2 { max-width: 1100px; margin: 0 auto 2.5rem; }
+    #goals .section-label { max-width: 1100px; margin: 0 auto 1rem; }
+
+    .goals-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .goal-card {
+      background: var(--navy);
+      border: 1px solid rgba(200,150,62,0.12);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .goal-card:hover {
+      border-color: rgba(200,150,62,0.4);
+      transform: translateY(-3px);
+    }
+
+    .goal-card.wide { grid-column: 1 / -1; }
+
+    .goal-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: rgba(200,150,62,0.15);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .goal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+
+    .goal-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .timeline-roadmap {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .roadmap-step {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      position: relative;
+    }
+
+    .roadmap-step::after {
+      content: '';
+      position: absolute; top: 18px; left: 50%; right: -50%;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), rgba(200,150,62,0.2));
+      z-index: 0;
+    }
+
+    .roadmap-step:last-child::after { display: none; }
+
+    .roadmap-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      margin: 0 auto 0.8rem;
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+    }
+
+    .roadmap-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .roadmap-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      padding: 0 0.5rem;
+    }
+
+    /* ─── PROJECTS ────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,150,62,0.12);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(200,150,62,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-tech {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    .tech-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.25rem 0.65rem;
+      background: rgba(78,205,196,0.08);
+      border: 1px solid rgba(78,205,196,0.2);
+      border-radius: 3px;
+      color: var(--accent);
+    }
+
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-decoration: none;
+      margin-top: 1.2rem;
+      letter-spacing: 0.08em;
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover { gap: 0.7rem; }
+
+    .project-visual {
+      background: var(--navy-light);
+      border-radius: 6px;
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      border: 1px solid rgba(200,150,62,0.1);
+    }
+
+    /* ─── RESUME ──────────────────────────────────────── */
+    .resume-cta {
+      text-align: center;
+      padding: 5rem;
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,150,62,0.15);
+      border-radius: 12px;
+    }
+
+    .resume-cta h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .resume-cta p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border: 1px solid rgba(200,150,62,0.12);
+      border-radius: 6px;
+      transition: all 0.25s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .contact-icon { font-size: 1.2rem; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      border-top: 1px solid rgba(200,150,62,0.1);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      section, #goals { padding: 4rem 1.5rem; }
+      #home { padding: 7rem 1.5rem 4rem; }
+      h1 { font-size: 3rem; }
+      .about-grid, .goals-grid, .projects-grid,
+      .contact-grid, .project-card.featured {
+        grid-template-columns: 1fr;
+      }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .timeline-roadmap { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Thomas Wen</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Computer Engineering @ Georgia Tech</div>
+      <h1>Thomas<br><em>Wen.</em></h1>
+      <p class="hero-sub">
+        Published IEEE researcher. Software engineering intern. Teaching assistant.
+        I build systems that matter — from adaptive noise barriers to player behavior analysis tools shipped on the Epic Games Store.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 — About Me</div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <h2>Engineer. Researcher.<br>Problem Solver.</h2>
+        <p>
+          I'm Thomas Wen, a Computer Engineering student at <strong>Georgia Institute of Technology</strong> (expected graduation May 2028), 
+          originally from Harrison, NJ. I grew up in a bilingual household — native in both English and Mandarin — which has 
+          shaped the way I approach communication and collaboration across different contexts and cultures.
+        </p>
+        <p>
+          My path to engineering started with curiosity about how systems work, from city infrastructure to digital 
+          security. That curiosity led me to publish research at the <strong>IEEE MIT Undergraduate Research Technology Conference</strong> 
+          as a high schooler, and hasn't slowed since arriving at Georgia Tech. I thrive at the intersection of software 
+          and real-world impact — whether that's building tools to detect cheating in games or localizing traffic signs 
+          using computer vision to improve urban infrastructure.
+        </p>
+        <p>
+          Outside the lab and classroom, I lead proof workshops as a <strong>Teaching Assistant</strong>, organize campus events 
+          through Connect, and enjoy exploring Atlanta's food scene (still on the hunt for the best dim sum).
+        </p>
+        <div class="skills-grid">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Nessus</span>
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Linux/Unix</span>
+          <span class="skill-tag">Computer Vision</span>
+        </div>
+      </div>
+      <div class="about-stats fade-up">
+        <div class="stat-card">
+          <span class="stat-number">4.0</span>
+          <span class="stat-label">GPA at Georgia Tech</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Internships Completed</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">1</span>
+          <span class="stat-label">IEEE Publication</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Leadership Roles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">02 — Experience</div>
+    <h2>Where I've<br>Made an Impact</h2>
+    <div class="timeline fade-up">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">June – August 2025 · San Mateo, CA</div>
+        <div class="timeline-title">Software Engineering Intern</div>
+        <div class="timeline-company">Manticore Games, Inc.</div>
+        <ul class="timeline-body">
+          <li>Built a player behavior analysis tool for <em>Out of Time</em> (Epic Games Store) using BigQuery, Python, and Streamlit — processing real player data at scale.</li>
+          <li>Designed a suspicion scoring system that ranks accounts based on statistical anomalies to surface cheaters.</li>
+          <li>Created a developer-facing dashboard for visualizing flagged accounts and metric breakdowns.</li>
+          <li>Shipped stretch goals: explainability metadata and automated data ingestion pipelines.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">January – February 2025 · New York, NY</div>
+        <div class="timeline-title">Information Technology Intern</div>
+        <div class="timeline-company">China CITIC Bank International</div>
+        <ul class="timeline-body">
+          <li>Conducted Vulnerability Management using Nessus to identify and prioritize security risks across infrastructure.</li>
+          <li>Configured network devices and provided IT support for office systems and security platforms.</li>
+          <li>Gained hands-on exposure to firewall management, domain administration, and IT compliance frameworks.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">January 2026 – Present · Atlanta, GA</div>
+        <div class="timeline-title">Teaching Assistant — Intro to Discrete Math for CS</div>
+        <div class="timeline-company">Georgia Institute of Technology</div>
+        <ul class="timeline-body">
+          <li>Lead weekly proof workshop recitations to reinforce course objectives for 200+ students.</li>
+          <li>Conduct office hours twice weekly and manage grading for exams and homework.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">January 2026 – Present · Atlanta, GA</div>
+        <div class="timeline-title">Undergraduate Researcher</div>
+        <div class="timeline-company">Vertically Integrated Projects: Smart City Infrastructure (GT VIP)</div>
+        <ul class="timeline-body">
+          <li>Conducting multidisciplinary research in Traffic Sign Localization using computer vision techniques.</li>
+          <li>Working to improve urban infrastructure and city planning through intelligent systems.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CAREER GOALS -->
+  <div id="goals">
+    <div class="section-label">03 — Career Vision</div>
+    <h2>Where I'm Headed</h2>
+
+    <div class="goals-grid fade-up">
+      <div class="goal-card">
+        <div class="goal-number">01</div>
+        <div class="goal-title">Secure a Summer 2026 SWE Internship</div>
+        <div class="goal-body">
+          My immediate focus is landing a software engineering internship beginning May 2026 at a company working 
+          on security, data engineering, or applied ML. Targeting roles where I can build on my BigQuery + Python 
+          data pipeline experience and my cybersecurity background from CITIC Bank.
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-number">02</div>
+        <div class="goal-title">Deepen Systems & Security Knowledge</div>
+        <div class="goal-body">
+          I plan to take ECE upper-division courses in computer architecture, operating systems, and network security 
+          over the next two years. I'm also pursuing a security certification (CompTIA Security+ or equivalent) 
+          to complement my hands-on Nessus and vulnerability management experience.
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-number">03</div>
+        <div class="goal-title">Grow Research Contributions</div>
+        <div class="goal-body">
+          Building on my IEEE URTC publication, I aim to contribute to at least two more semesters of the VIP Smart 
+          City Infrastructure program and ideally co-author a second publication before graduating — focusing on 
+          computer vision applications in urban environments.
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-number">04</div>
+        <div class="goal-title">Long-Term: Build Intelligent Security Systems</div>
+        <div class="goal-body">
+          Within 5–7 years of graduating, I want to work as a senior engineer or researcher at a company applying 
+          ML to cybersecurity — detecting threats at scale the way I detected cheating patterns at Manticore. 
+          Ultimately, I'd consider founding a startup or pursuing a graduate degree if a compelling research 
+          direction emerges.
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-roadmap fade-up">
+      <div class="roadmap-step">
+        <div class="roadmap-dot">Now</div>
+        <div class="roadmap-year">2025–26</div>
+        <div class="roadmap-desc">TA + VIP Research, secure internship</div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-dot">→</div>
+        <div class="roadmap-year">Summer 2026</div>
+        <div class="roadmap-desc">SWE Internship (security or data)</div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-dot">→</div>
+        <div class="roadmap-year">2026–27</div>
+        <div class="roadmap-desc">Upper-div coursework + 2nd publication</div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-dot">→</div>
+        <div class="roadmap-year">May 2028</div>
+        <div class="roadmap-desc">Graduate BS CompE, full-time offer</div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-dot">→</div>
+        <div class="roadmap-year">2030+</div>
+        <div class="roadmap-desc">Senior engineer / ML Security research</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">04 — Technical Projects</div>
+    <h2>Things I've<br>Built & Researched</h2>
+
+    <div class="projects-grid fade-up">
+
+      <!-- FEATURED: Manticore -->
+      <div class="project-card featured">
+        <div>
+          <div class="project-tag">Featured · Software Engineering</div>
+          <div class="project-title">Player Behavior Analysis & Suspicion Scoring Tool</div>
+          <div class="project-desc">
+            During my internship at Manticore Games, I built an end-to-end player behavior analysis system for 
+            <em>Out of Time</em>, a multiplayer roguelike available on the Epic Games Store. The project involved 
+            ingesting large volumes of gameplay event data into Google BigQuery, engineering statistical features 
+            to characterize player behavior, and designing a scoring algorithm that assigned each account a 
+            "suspicion score" based on anomaly detection. I wrapped everything in a Streamlit dashboard so the 
+            game dev team could investigate flagged accounts, drill into metric breakdowns, and take action — 
+            all without writing SQL. I also delivered stretch goals including explainability metadata (so developers 
+            could see <em>why</em> an account was flagged) and an automated data ingestion pipeline that kept the 
+            dashboard fresh daily.
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">BigQuery</span>
+            <span class="tech-badge">Streamlit</span>
+            <span class="tech-badge">SQL</span>
+            <span class="tech-badge">GCP</span>
+            <span class="tech-badge">Statistical Anomaly Detection</span>
+          </div>
+        </div>
+        <div class="project-visual">🎮</div>
+      </div>
+
+      <!-- IEEE Publication -->
+      <div class="project-card">
+        <div class="project-tag">IEEE Publication · 2023</div>
+        <div class="project-title">Adaptive Noise Barrier — IEEE MIT URTC</div>
+        <div class="project-desc">
+          Co-authored and presented published research on a dynamic barrier system that adjusts its acoustic 
+          properties in real time to reduce noise pollution in urban environments. Published at the 2023 IEEE 
+          MIT Undergraduate Research Technology Conference. The project combined signal processing, embedded 
+          systems design, and materials science.
+        </div>
+        <div class="project-tech">
+          <span class="tech-badge">Signal Processing</span>
+          <span class="tech-badge">Embedded Systems</span>
+          <span class="tech-badge">IEEE Research</span>
+        </div>
+        <a href="https://ieeexplore.ieee.org" class="project-link" target="_blank">
+          View on IEEE Xplore →
+        </a>
+      </div>
+
+      <!-- VIP Smart City -->
+      <div class="project-card">
+        <div class="project-tag">Active Research · GT VIP</div>
+        <div class="project-title">Traffic Sign Localization — Smart City Infrastructure</div>
+        <div class="project-desc">
+          As part of Georgia Tech's Vertically Integrated Projects program, I'm contributing to a multidisciplinary 
+          team applying computer vision to Traffic Sign Localization — building pipelines that can automatically 
+          detect, classify, and geo-tag traffic signs from video footage to support urban infrastructure planning 
+          and maintenance.
+        </div>
+        <div class="project-tech">
+          <span class="tech-badge">Computer Vision</span>
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">GIS Software</span>
+          <span class="tech-badge">Deep Learning</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="resume-cta fade-up">
+      <h3>Want the Full Picture?</h3>
+      <p>Download my one-page resume, formatted for technical recruiting and the ECE Career Fair.</p>
+      <a href="Thomas_Wen_resume.pdf" download class="btn btn-primary">Download Resume (PDF)</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">05 — Contact</div>
+    <div class="contact-grid fade-up">
+      <div class="contact-info">
+        <h2>Let's Connect.</h2>
+        <p>
+          I'm actively seeking software engineering internships starting May 2026. Whether you're a recruiter, 
+          researcher, or fellow student — I'd love to hear from you.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:twen40@gatech.edu" class="contact-link">
+          <span class="contact-icon">✉</span> twen40@gatech.edu
+        </a>
+        <a href="tel:9082512656" class="contact-link">
+          <span class="contact-icon">☎</span> (908) 251-2656
+        </a>
+        <a href="https://linkedin.com" class="contact-link" target="_blank">
+          <span class="contact-icon">in</span> LinkedIn Profile
+        </a>
+        <a href="https://github.com" class="contact-link" target="_blank">
+          <span class="contact-icon">⌨</span> GitHub Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Thomas Wen · Computer Engineering @ Georgia Tech · Built with HTML, CSS & intention.</p>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Nav active state
+    const sections = document.querySelectorAll('section, div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) {
+          current = s.getAttribute('id');
+        }
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}`
+          ? 'var(--gold)'
+          : 'var(--text-muted)';
+      });
+    });
+  </script>
+
+</body>
+</html>
