@@ -573,6 +573,37 @@
       border: 1px solid rgba(200,150,62,0.1);
     }
 
+    .project-visual.video-visual {
+      flex-direction: column;
+      gap: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+      text-decoration: none;
+    }
+
+    .project-visual.video-visual:hover {
+      border-color: rgba(200,150,62,0.4);
+      background: rgba(200,150,62,0.05);
+    }
+
+    .video-play-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(200,150,62,0.12);
+      border: 1px solid rgba(200,150,62,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+
+    .video-visual-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     /* ─── RESUME ──────────────────────────────────────── */
     .resume-cta {
       text-align: center;
@@ -692,8 +723,9 @@
       <div class="hero-tag">Computer Engineering @ Georgia Tech</div>
       <h1>Thomas<br><em>Wen.</em></h1>
       <p class="hero-sub">
-        Published IEEE researcher. Software engineering intern. Teaching assistant.
-        I build systems that matter — from adaptive noise barriers to player behavior analysis tools shipped on the Epic Games Store.
+        Published IEEE researcher. Software Engineer with experience across game analytics, distributed
+        storage systems, and full-stack development. I build systems that matter — from adaptive noise
+        barriers to AI inference storage benchmarking at DataDirect Networks.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -713,34 +745,42 @@
       <div class="about-text fade-up">
         <h2>Engineer. Researcher.<br>Problem Solver.</h2>
         <p>
-          I'm Thomas Wen, a Computer Engineering student at <strong>Georgia Institute of Technology</strong> (expected graduation May 2028), 
-          originally from Harrison, NJ. I grew up in a bilingual household — native in both English and Mandarin — which has 
-          shaped the way I approach communication and collaboration across different contexts and cultures.
+          I'm Thomas Wen, a Computer Engineering student at <strong>Georgia Institute of Technology</strong> (expected graduation May 2028, GPA 4.00,
+          Dean's List with Faculty Honors every semester), originally from Harrison, NJ. I grew up in a bilingual household — native in both English
+          and Mandarin — which has shaped the way I approach communication and collaboration across different contexts and cultures.
         </p>
         <p>
-          My path to engineering started with curiosity about how systems work, from city infrastructure to digital 
-          security. That curiosity led me to publish research at the <strong>IEEE MIT Undergraduate Research Technology Conference</strong> 
-          as a high schooler, and hasn't slowed since arriving at Georgia Tech. I thrive at the intersection of software 
-          and real-world impact — whether that's building tools to detect cheating in games or localizing traffic signs 
-          using computer vision to improve urban infrastructure.
+          My path to engineering started with curiosity about how systems work, from city infrastructure to distributed storage.
+          That curiosity led me to publish research at the <strong>IEEE MIT Undergraduate Research Technology Conference</strong>
+          as a high schooler, and hasn't slowed since arriving at Georgia Tech. I've since worked across the stack — from
+          benchmarking GPU-storage data paths for LLM inference at <strong>DataDirect Networks</strong>, to building anomaly-detection
+          tooling for live multiplayer games at <strong>Manticore Games</strong>, to localizing traffic signs with computer vision
+          through Georgia Tech's Smart City VIP.
         </p>
         <p>
-          Outside the lab and classroom, I lead proof workshops as a <strong>Teaching Assistant</strong>, organize campus events 
-          through Connect, and enjoy exploring Atlanta's food scene (still on the hunt for the best dim sum).
+          Outside the lab and classroom, I serve as <strong>Head Teaching Assistant</strong> for Discrete Math, managing a team of 25 TAs
+          for a 500+ student course, and enjoy exploring Atlanta's food scene (still on the hunt for the best dim sum).
         </p>
         <div class="skills-grid">
           <span class="skill-tag">Java</span>
           <span class="skill-tag">Python</span>
-          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C/C++</span>
           <span class="skill-tag">SQL</span>
-          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">SystemVerilog</span>
           <span class="skill-tag">Streamlit</span>
-          <span class="skill-tag">Splunk</span>
-          <span class="skill-tag">Nessus</span>
-          <span class="skill-tag">GCP</span>
-          <span class="skill-tag">GitHub</span>
-          <span class="skill-tag">Linux/Unix</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Lustre Parallel Filesystem</span>
+          <span class="skill-tag">NVIDIA GPUDirect Storage</span>
+          <span class="skill-tag">vLLM</span>
+          <span class="skill-tag">LMCache</span>
           <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">Cadence Innovus</span>
+          <span class="skill-tag">Datadog</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Linux/ARM</span>
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">Git/GitHub</span>
         </div>
       </div>
       <div class="about-stats fade-up">
@@ -772,48 +812,41 @@
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
+        <div class="timeline-meta">May – August 2026 · Tokyo, Japan (Remote)</div>
+        <div class="timeline-title">Software Engineer I</div>
+        <div class="timeline-company">DataDirect Networks</div>
+        <ul class="timeline-body">
+          <li>Built and deployed a Lustre parallel filesystem client from source, establishing a test environment used for all subsequent GPU-storage benchmarking work.</li>
+          <li>Benchmarked NVIDIA Dynamo/KVBM inference serving against GPUDirect Storage, validating the data path end-to-end and quantifying time-to-first-token impact of offloading LLM KV cache to external storage.</li>
+          <li>Deployed LMCache on Kubernetes and debugged an ARM platform incompatibility that blocked the standard install path; demonstrated 100% KV cache recovery from DDN EXAScaler storage after cache eviction.</li>
+          <li>Automated performance testing pipelines and execution scripts, reducing validation cycle times for international teams.</li>
+          <li>Collaborated with a Tokyo-based team to analyze telemetry metrics and implement system-level performance optimizations.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
         <div class="timeline-meta">June – August 2025 · San Mateo, CA</div>
         <div class="timeline-title">Software Engineering Intern</div>
         <div class="timeline-company">Manticore Games, Inc.</div>
         <ul class="timeline-body">
-          <li>Built a player behavior analysis tool for <em>Out of Time</em> (Epic Games Store) using BigQuery, Python, and Streamlit — processing real player data at scale.</li>
-          <li>Designed a suspicion scoring system that ranks accounts based on statistical anomalies to surface cheaters.</li>
-          <li>Created a developer-facing dashboard for visualizing flagged accounts and metric breakdowns.</li>
-          <li>Shipped stretch goals: explainability metadata and automated data ingestion pipelines.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">January – February 2025 · New York, NY</div>
-        <div class="timeline-title">Information Technology Intern</div>
-        <div class="timeline-company">China CITIC Bank International</div>
-        <ul class="timeline-body">
-          <li>Conducted Vulnerability Management using Nessus to identify and prioritize security risks across infrastructure.</li>
-          <li>Configured network devices and provided IT support for office systems and security platforms.</li>
-          <li>Gained hands-on exposure to firewall management, domain administration, and IT compliance frameworks.</li>
+          <li>Developed a player behavior analysis tool for <em>Out of Time</em> using BigQuery, Python, and Streamlit, processing 15M+ daily events.</li>
+          <li>Designed a suspicion scoring system to rank accounts, analyzing database statistics to improve anomaly detection accuracy.</li>
+          <li>Created a developer-facing dashboard for visualizing flagged accounts, reducing manual investigation time by over 80%.</li>
+          <li>Delivered on stretch goals by engineering automated data ingestion pipelines (saving 6+ hours/week) and explainability metadata.</li>
         </ul>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-meta">January 2026 – Present · Atlanta, GA</div>
-        <div class="timeline-title">Teaching Assistant — Intro to Discrete Math for CS</div>
-        <div class="timeline-company">Georgia Institute of Technology</div>
+        <div class="timeline-title">Head Teaching Assistant — Discrete Math for CS (CS 2050)</div>
+        <div class="timeline-company">College of Computing, Georgia Institute of Technology</div>
         <ul class="timeline-body">
-          <li>Lead weekly proof workshop recitations to reinforce course objectives for 200+ students.</li>
-          <li>Conduct office hours twice weekly and manage grading for exams and homework.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">January 2026 – Present · Atlanta, GA</div>
-        <div class="timeline-title">Undergraduate Researcher</div>
-        <div class="timeline-company">Vertically Integrated Projects: Smart City Infrastructure (GT VIP)</div>
-        <ul class="timeline-body">
-          <li>Conducting multidisciplinary research in Traffic Sign Localization using computer vision techniques.</li>
-          <li>Working to improve urban infrastructure and city planning through intelligent systems.</li>
+          <li>Teach occasional lectures and manage logistics of a foundational course with 500+ students.</li>
+          <li>Manage a team of 25 TAs, coordinate grading workflows for exams and homework, and host weekly office hours.</li>
+          <li>Lead proof workshop recitations to reinforce logic, set theory, number theory, and cryptography concepts.</li>
+          <li>Conduct interviews and oversee hiring for prospective Teaching Assistants.</li>
         </ul>
       </div>
 
@@ -828,39 +861,40 @@
     <div class="goals-grid fade-up">
       <div class="goal-card">
         <div class="goal-number">01</div>
-        <div class="goal-title">Secure a Summer 2026 SWE Internship</div>
+        <div class="goal-title">Secure a Summer 2027 SWE Internship</div>
         <div class="goal-body">
-          My immediate focus is landing a software engineering internship beginning May 2026 at a company working 
-          on security, data engineering, or applied ML. Targeting roles where I can build on my BigQuery + Python 
-          data pipeline experience and my cybersecurity background from CITIC Bank.
+          My immediate focus is landing a software engineering internship for Summer 2027 at a company working on
+          distributed systems, AI infrastructure, or security. Targeting roles where I can build on my GPU-storage
+          and inference-serving experience from DataDirect Networks and my anomaly-detection background from Manticore Games.
         </div>
       </div>
       <div class="goal-card">
+        <div class="goal-title">Deepen Systems & Hardware Knowledge</div>
         <div class="goal-number">02</div>
-        <div class="goal-title">Deepen Systems & Security Knowledge</div>
         <div class="goal-body">
-          I plan to take ECE upper-division courses in computer architecture, operating systems, and network security 
-          over the next two years. I'm also pursuing a security certification (CompTIA Security+ or equivalent) 
-          to complement my hands-on Nessus and vulnerability management experience.
+          I plan to take ECE upper-division courses in computer architecture, operating systems, and network security
+          over the next two years, while continuing to sharpen my digital and physical design skills with tools like
+          Cadence Innovus following my Ripple Carry Adder project.
         </div>
       </div>
       <div class="goal-card">
         <div class="goal-number">03</div>
         <div class="goal-title">Grow Research Contributions</div>
         <div class="goal-body">
-          Building on my IEEE URTC publication, I aim to contribute to at least two more semesters of the VIP Smart 
-          City Infrastructure program and ideally co-author a second publication before graduating — focusing on 
-          computer vision applications in urban environments.
+          Building on my IEEE URTC publication, I aim to continue contributing to the VIP Smart City Infrastructure
+          program — applying computer vision (MoGe, OpenCV) and GPS data to traffic sign localization — and ideally
+          co-author a second publication before graduating.
         </div>
       </div>
-      <div class="goal-card">
+      <div class="goal-card wide">
         <div class="goal-number">04</div>
-        <div class="goal-title">Long-Term: Build Intelligent Security Systems</div>
+        <div class="goal-title">Long-Term: Build High-Performance, Intelligent Systems</div>
         <div class="goal-body">
-          Within 5–7 years of graduating, I want to work as a senior engineer or researcher at a company applying 
-          ML to cybersecurity — detecting threats at scale the way I detected cheating patterns at Manticore. 
-          Ultimately, I'd consider founding a startup or pursuing a graduate degree if a compelling research 
-          direction emerges.
+          Within 5–7 years of graduating, I want to work as a senior engineer or researcher building the systems that
+          sit underneath AI at scale — distributed storage, inference infrastructure, and the security layers that
+          protect them — the way I benchmarked GPU-storage data paths at DataDirect Networks and detected cheating
+          patterns at Manticore. Ultimately, I'd consider founding a startup or pursuing a graduate degree if a
+          compelling research direction emerges.
         </div>
       </div>
     </div>
@@ -868,17 +902,17 @@
     <div class="timeline-roadmap fade-up">
       <div class="roadmap-step">
         <div class="roadmap-dot">Now</div>
-        <div class="roadmap-year">2025–26</div>
-        <div class="roadmap-desc">TA + VIP Research, secure internship</div>
+        <div class="roadmap-year">Fall 2026</div>
+        <div class="roadmap-desc">Head TA + VIP Research, applying for Summer 2027 internships</div>
       </div>
       <div class="roadmap-step">
         <div class="roadmap-dot">→</div>
-        <div class="roadmap-year">Summer 2026</div>
-        <div class="roadmap-desc">SWE Internship (security or data)</div>
+        <div class="roadmap-year">Summer 2027</div>
+        <div class="roadmap-desc">SWE Internship (distributed systems / AI infra / security)</div>
       </div>
       <div class="roadmap-step">
         <div class="roadmap-dot">→</div>
-        <div class="roadmap-year">2026–27</div>
+        <div class="roadmap-year">2027–28</div>
         <div class="roadmap-desc">Upper-div coursework + 2nd publication</div>
       </div>
       <div class="roadmap-step">
@@ -889,7 +923,7 @@
       <div class="roadmap-step">
         <div class="roadmap-dot">→</div>
         <div class="roadmap-year">2030+</div>
-        <div class="roadmap-desc">Senior engineer / ML Security research</div>
+        <div class="roadmap-desc">Senior engineer / AI infrastructure research</div>
       </div>
     </div>
   </div>
@@ -901,21 +935,51 @@
 
     <div class="projects-grid fade-up">
 
+      <!-- FEATURED: Movies Store -->
+      <div class="project-card featured">
+        <div>
+          <div class="project-tag">Featured · Full-Stack Development · CS 2340</div>
+          <div class="project-title">Movies Store — Full-Stack Web App</div>
+          <div class="project-desc">
+            Built for Georgia Tech's CS 2340 (Objects and Design), Movies Store is a full-stack web application that lets
+            users browse a movie catalog, manage a cart, and check out, all backed by a clean object-oriented architecture
+            designed around SOLID principles and common design patterns. The project emphasized proper separation of
+            concerns between the front end, back end, and data layer, along with collaborative development practices
+            (version control, code review, and iterative sprints) as part of a team.
+            <br><br>
+            <em>Edit this description with your app's specific tech stack, features, and design patterns before publishing.</em>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Object-Oriented Design</span>
+            <span class="tech-badge">Full-Stack Web Dev</span>
+            <span class="tech-badge">Team Project</span>
+            <span class="tech-badge">Git/GitHub</span>
+          </div>
+          <a href="https://gtvault-my.sharepoint.com/:v:/g/personal/twen40_gatech_edu/IQBWnyDe6TCvQZVp_wxHmvdOAUanQyK4A-l3JXskfnQCQ5U?e=qBYgHM&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" class="project-link" target="_blank" rel="noopener noreferrer">
+            ▶ Watch Full Demo Video →
+          </a>
+        </div>
+        <a class="project-visual video-visual" href="https://gtvault-my.sharepoint.com/:v:/g/personal/twen40_gatech_edu/IQBWnyDe6TCvQZVp_wxHmvdOAUanQyK4A-l3JXskfnQCQ5U?e=qBYgHM&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" target="_blank" rel="noopener noreferrer">
+          <div class="video-play-icon">▶</div>
+          <div class="video-visual-label">Watch Demo (SharePoint)</div>
+        </a>
+      </div>
+
       <!-- FEATURED: Manticore -->
       <div class="project-card featured">
         <div>
           <div class="project-tag">Featured · Software Engineering</div>
           <div class="project-title">Player Behavior Analysis & Suspicion Scoring Tool</div>
           <div class="project-desc">
-            During my internship at Manticore Games, I built an end-to-end player behavior analysis system for 
-            <em>Out of Time</em>, a multiplayer roguelike available on the Epic Games Store. The project involved 
-            ingesting large volumes of gameplay event data into Google BigQuery, engineering statistical features 
-            to characterize player behavior, and designing a scoring algorithm that assigned each account a 
-            "suspicion score" based on anomaly detection. I wrapped everything in a Streamlit dashboard so the 
-            game dev team could investigate flagged accounts, drill into metric breakdowns, and take action — 
-            all without writing SQL. I also delivered stretch goals including explainability metadata (so developers 
-            could see <em>why</em> an account was flagged) and an automated data ingestion pipeline that kept the 
-            dashboard fresh daily.
+            During my internship at Manticore Games, I built an end-to-end player behavior analysis system for
+            <em>Out of Time</em>, a multiplayer roguelike available on the Epic Games Store. The project involved
+            ingesting 15M+ daily gameplay events into Google BigQuery, engineering statistical features to
+            characterize player behavior, and designing a scoring algorithm that assigned each account a
+            "suspicion score" based on anomaly detection. I wrapped everything in a Streamlit dashboard so the
+            game dev team could investigate flagged accounts and drill into metric breakdowns without writing SQL,
+            cutting manual investigation time by over 80%. I also delivered stretch goals including explainability
+            metadata (so developers could see <em>why</em> an account was flagged) and an automated data ingestion
+            pipeline that saved the team 6+ hours per week.
           </div>
           <div class="project-tech">
             <span class="tech-badge">Python</span>
@@ -929,15 +993,35 @@
         <div class="project-visual">🎮</div>
       </div>
 
+      <!-- DataDirect Networks: GPU Storage Benchmarking -->
+      <div class="project-card">
+        <div class="project-tag">Systems Engineering · Internship</div>
+        <div class="project-title">GPU-Storage & LLM Inference Benchmarking</div>
+        <div class="project-desc">
+          At DataDirect Networks, built a Lustre parallel filesystem client from source and used it to benchmark
+          NVIDIA Dynamo/KVBM inference serving against GPUDirect Storage. Deployed LMCache on Kubernetes, resolved
+          an ARM platform incompatibility, and demonstrated 100% KV cache recovery from DDN EXAScaler storage after
+          cache eviction.
+        </div>
+        <div class="project-tech">
+          <span class="tech-badge">Lustre</span>
+          <span class="tech-badge">Kubernetes</span>
+          <span class="tech-badge">GPUDirect Storage</span>
+          <span class="tech-badge">vLLM</span>
+          <span class="tech-badge">LMCache</span>
+          <span class="tech-badge">Linux/ARM</span>
+        </div>
+      </div>
+
       <!-- IEEE Publication -->
       <div class="project-card">
         <div class="project-tag">IEEE Publication · 2023</div>
         <div class="project-title">Adaptive Noise Barrier — IEEE MIT URTC</div>
         <div class="project-desc">
-          Co-authored and presented published research on a dynamic barrier system that adjusts its acoustic 
-          properties in real time to reduce noise pollution in urban environments. Published at the 2023 IEEE 
-          MIT Undergraduate Research Technology Conference. The project combined signal processing, embedded 
-          systems design, and materials science.
+          Co-authored and presented published research on a dynamic barrier system that adjusts its acoustic
+          properties in real time to reduce noise pollution in urban environments. Published as "Reducing Noise
+          Pollution with an Adaptive Barrier" at the 2023 IEEE MIT Undergraduate Research Technology Conference.
+          The project combined signal processing, embedded systems design, and materials science.
         </div>
         <div class="project-tech">
           <span class="tech-badge">Signal Processing</span>
@@ -954,16 +1038,31 @@
         <div class="project-tag">Active Research · GT VIP</div>
         <div class="project-title">Traffic Sign Localization — Smart City Infrastructure</div>
         <div class="project-desc">
-          As part of Georgia Tech's Vertically Integrated Projects program, I'm contributing to a multidisciplinary 
-          team applying computer vision to Traffic Sign Localization — building pipelines that can automatically 
-          detect, classify, and geo-tag traffic signs from video footage to support urban infrastructure planning 
-          and maintenance.
+          As part of Georgia Tech's Vertically Integrated Projects program, I optimize ML and computer vision
+          algorithms using Microsoft MoGe and GPS data for high-accuracy traffic sign localization, collaborating
+          on a smart-infrastructure sub-team to enhance urban data collection and transit mapping efficiency.
         </div>
         <div class="project-tech">
           <span class="tech-badge">Computer Vision</span>
-          <span class="tech-badge">Python</span>
-          <span class="tech-badge">GIS Software</span>
-          <span class="tech-badge">Deep Learning</span>
+          <span class="tech-badge">Microsoft MoGe</span>
+          <span class="tech-badge">OpenCV</span>
+          <span class="tech-badge">GPS/GIS Data</span>
+        </div>
+      </div>
+
+      <!-- 32-Bit Ripple Carry Adder -->
+      <div class="project-card">
+        <div class="project-tag">Digital & Physical Design</div>
+        <div class="project-title">32-Bit Ripple Carry Adder</div>
+        <div class="project-desc">
+          Designed a 32-bit Ripple Carry Adder from the ground up using SystemVerilog, then verified and applied
+          physical design and optimization techniques using Cadence tools across the full RTL-to-GDS flow.
+        </div>
+        <div class="project-tech">
+          <span class="tech-badge">SystemVerilog</span>
+          <span class="tech-badge">Cadence Innovus</span>
+          <span class="tech-badge">RTL-to-GDS</span>
+          <span class="tech-badge">Verification</span>
         </div>
       </div>
 
@@ -974,7 +1073,7 @@
   <section id="resume">
     <div class="resume-cta fade-up">
       <h3>Want the Full Picture?</h3>
-      <p>Download my one-page resume, formatted for technical recruiting and the ECE Career Fair.</p>
+      <p>Download my one-page resume, updated for Summer 2027 recruiting and the ECE Career Fair.</p>
       <a href="Thomas_Wen_resume.pdf" download class="btn btn-primary">Download Resume (PDF)</a>
     </div>
   </section>
@@ -986,7 +1085,7 @@
       <div class="contact-info">
         <h2>Let's Connect.</h2>
         <p>
-          I'm actively seeking software engineering internships starting May 2026. Whether you're a recruiter, 
+          I'm actively seeking software engineering internships starting May 2027. Whether you're a recruiter,
           researcher, or fellow student — I'd love to hear from you.
         </p>
       </div>
